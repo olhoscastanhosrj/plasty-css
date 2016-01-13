@@ -1,0 +1,39 @@
+@for $i from 1 through 6 {
+
+	.with-#{$i}-spaces * {
+		position: relative;
+		box-sizing: border-box;
+	}
+
+
+	.with-#{$i}-spaces {
+		$width: (100.0% / $i);
+		@for $j from 1 through $i{
+			div:nth-of-type(#{$j}), span:nth-of-type(#{$j}){
+				left: $width * ($j - 1) ;
+			}
+		}
+
+        div , span{
+        	position: absolute;
+        	float: left;
+        	width: 100.0% / $i;
+        }
+
+        div * , span *{
+        	position: static;
+        }
+
+		div:before,
+	    div:after,
+	    span:before,
+	    span:after {
+	      content: " ";
+	      display: table;
+	    }
+	     
+	    div:after, span:after {
+	      clear: both;
+	    }
+	}
+}
